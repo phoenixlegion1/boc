@@ -1,36 +1,40 @@
-// /pages/index.js
-
-import { useState, useEffect } from 'react';
-
-export default function Home() {
-  const [playerData, setPlayerData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch player data from the custom API route
-    async function fetchPlayerData() {
-      const response = await fetch('clash');
-      const data = await response.json();
-      setPlayerData(data);
-      setLoading(false);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clash of Clans Player Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
     }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .player-info {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Clash of Clans Player Info</h1>
 
-    fetchPlayerData();
-  }, []);
+    <!-- Input for Player Tag -->
+    <input type="text" id="playerTag" placeholder="Enter Player Tag (e.g., #PLAYER_TAG)" />
 
-  // Handle loading and error states
-  if (loading) return <p>Loading...</p>;
-  if (!playerData) return <p>Error fetching data</p>;
+    <!-- Button to Fetch Player Data -->
+    <button onclick="fetchPlayerData()">Get Player Data</button>
 
-  // Display player information
-  return (
-    <div>
-      <h1>Clash of Clans Player Info</h1>
-      <p><strong>Player Name:</strong> {playerData.name}</p>
-      <p><strong>Player Level:</strong> {playerData.expLevel}</p>
-      <p><strong>Clan:</strong> {playerData.clan?.name || 'No Clan'}</p>
-      <p><strong>Trophies:</strong> {playerData.trophies}</p>
-      {/* You can render more data fields based on the API response */}
-    </div>
-  );
-}
+    <!-- Display the player data here -->
+    <div id="playerInfo" class="player-info"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
