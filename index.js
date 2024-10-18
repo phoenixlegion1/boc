@@ -9,7 +9,7 @@ export default function Home() {
   useEffect(() => {
     // Fetch player data from the custom API route
     async function fetchPlayerData() {
-      const response = await fetch('/api/clash');
+      const response = await fetch('clash');
       const data = await response.json();
       setPlayerData(data);
       setLoading(false);
