@@ -11,7 +11,7 @@ async function fetchPlayerData() {
   const apiKey = process.env.COC_API_KEY;  // Replace with your API key from Clash of Clans Developer portal
 
   try {
-    const response = await fetch(`https://cocproxy.royaleapi.dev/v1/players/${playerTag}`, {
+    const response = await fetch(`https://cocproxy.royaleapi.dev/v1/players/%23${playerTag}`, {
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
